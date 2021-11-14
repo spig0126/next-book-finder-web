@@ -19,6 +19,7 @@ export default function Book() {
   ];
   return (
     <Button But>
+      <BookImage src="add image link" />
       <Title>{bookContent[0].title}</Title>
       <Authors>{bookContent[0].authors}</Authors>
       <Page>{bookContent[0].pageCount}</Page>
@@ -38,3 +39,4 @@ const Authors = styled.div``;
 const Page = styled.div``;
 const Publish = styled.div``;
 const Rating = styled.div``;
+const BookImage = styled.img``;
