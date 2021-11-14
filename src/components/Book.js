@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { Button, ButtonGroup } from "@chakra-ui/react";
 export default function Book() {
   const bookContent = [
     {
@@ -18,7 +18,7 @@ export default function Book() {
     },
   ];
   return (
-    <Wrapper>
+    <Button But>
       <Title>{bookContent[0].title}</Title>
       <Authors>{bookContent[0].authors}</Authors>
       <Page>{bookContent[0].pageCount}</Page>
@@ -29,14 +29,10 @@ export default function Book() {
         {bookContent[0].averageRating}
         {bookContent[0].ratingsCount}
       </Rating>
-    </Wrapper>
+    </Button>
   );
 }
 
-const Wrapper = styled.button`
-  colorScheme="teal";
-  variant="outline";
-`;
 const Title = styled.div``;
 const Authors = styled.div``;
 const Page = styled.div``;
