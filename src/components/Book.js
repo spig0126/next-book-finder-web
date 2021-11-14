@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Button, Wrap, WrapItem, Flex, Spacer } from "@chakra-ui/react";
+
 export default function Book() {
   const bookContent = [
     {
@@ -18,18 +19,19 @@ export default function Book() {
     },
   ];
   return (
-    <Button But>
-      <BookImage src="add image link" />
-      <Title>{bookContent[0].title}</Title>
-      <Authors>{bookContent[0].authors}</Authors>
-      <Page>{bookContent[0].pageCount}</Page>
-      <Publish>
-        {bookContent[0].publisher} {bookContent[0].published}
-      </Publish>
-      <Rating>
-        {bookContent[0].averageRating}
-        {bookContent[0].ratingsCount}
-      </Rating>
+    <Button But width="15rem" height="10rem">
+      <Wrap spacing="0.3rem" align="center">
+        <BookImage src="add image link" />
+        <Title>{bookContent[0].title}</Title>
+        <Authors>{bookContent[0].authors}</Authors>
+        <Page>{bookContent[0].pageCount}</Page>
+        <Publish>
+          {bookContent[0].publisher} {bookContent[0].published}
+        </Publish>
+        <Rating>
+          {bookContent[0].averageRating} {bookContent[0].ratingsCount}
+        </Rating>
+      </Wrap>
     </Button>
   );
 }
