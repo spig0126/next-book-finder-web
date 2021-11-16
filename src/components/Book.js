@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button, Wrap } from "@chakra-ui/react";
-
+import Link from "next/link";
 export default function Book() {
   const bookList = [
     {
@@ -33,20 +33,24 @@ export default function Book() {
     },
   ];
   return (
-    <Button But width="15rem" height="10rem">
-      <Wrap spacing="0.3rem" align="center">
-        <BookImage src="add image link" />
-        <Title>{bookList[0].title}</Title>
-        <Authors>{bookList[0].authors}</Authors>
-        <Page>{bookList[0].pageCount}</Page>
-        <Publish>
-          {bookList[0].publisher} {bookList[0].published}
-        </Publish>
-        <Rating>
-          {bookList[0].averageRating} {bookList[0].ratingsCount}
-        </Rating>
-      </Wrap>
-    </Button>
+    <Link href={`/bookDescriptions/${bookList[0].title}`} passHref>
+      <a>
+        <Button But width="15rem" height="10rem">
+          <Wrap spacing="0.3rem" align="center">
+            <BookImage src="add image link" />
+            <Title>{bookList[0].title}</Title>
+            <Authors>{bookList[0].authors}</Authors>
+            <Page>{bookList[0].pageCount}</Page>
+            <Publish>
+              {bookList[0].publisher} {bookList[0].published}
+            </Publish>
+            <Rating>
+              {bookList[0].averageRating} {bookList[0].ratingsCount}
+            </Rating>
+          </Wrap>
+        </Button>
+      </a>
+    </Link>
   );
 }
 
