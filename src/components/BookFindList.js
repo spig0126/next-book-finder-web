@@ -29,7 +29,8 @@ export default function BookFindList() {
             averageRating: "평점",
             ratingsCount: "평가인원",
             description: "아기돼지삼형제 상세설명",
-            buyLink: "구매링크",
+            buyLink:
+                "https://play.google.com/store/books/details?id=zyTCAlFPjgYC&rdid=book-zyTCAlFPjgYC&rdot=1&source=gbs_api",
             smallThumbnail:
                 "http://books.google.com/books/content?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE70BvHGPZAp1cyEUyblB6VTCfBmvoxK8TX35QNO2LIrCPRoc4JTLTTLzDeJvT93gdhkEj4WXiNwNpOyYFXypLZ8q_3bcvLQQVxiPax-kvMmOR7aq9J3IxsaHXXnZVX2djbBRR9I6&source=gbs_api",
         },
