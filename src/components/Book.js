@@ -4,7 +4,14 @@ import Link from "next/link";
 
 export default function Book({ book }) {
     return (
-        <Link href={`/bookDescriptions/${book.title}`} passHref>
+        <Link
+            href={{
+                pathname: `/bookDescriptions/${book.title}`,
+                query: { book: JSON.stringify(book) },
+                //array 문자화
+            }}
+            passHref
+        >
             <a>
                 <Button But width="15rem" height="10rem">
                     <Wrap spacing="0.3rem" align="center">
