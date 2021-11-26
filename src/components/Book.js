@@ -13,9 +13,13 @@ export default function Book({ book }) {
             passHref
         >
             <a>
-                <Button But width="15rem" height="10rem">
+                <Button But width="20rem" height="10rem">
                     <Wrap spacing="0.3rem" align="center">
-                        <BookImage src="add image link" />
+                        <BookImage
+                            src={book.smallThumbnail}
+                            height="60rem"
+                            width="60rem"
+                        />
                         <Title>{book.title}</Title>
                         <Authors>{book.authors}</Authors>
                         <Page>{book.pageCount}</Page>
