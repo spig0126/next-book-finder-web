@@ -10,6 +10,7 @@ export default function Book({ book }) {
                 query: { book: JSON.stringify(book) },
                 //array 문자화
             }}
+            as={`/bookDescriptions/${book.title}`}
             passHref
         >
             <a>
