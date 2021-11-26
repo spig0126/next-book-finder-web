@@ -1,6 +1,7 @@
 import Book from "./Book";
 export default function BookFindList() {
     // 2. Use at the root of your app
+    //bookList만 api에서 받아온 걸로 수정하면 됨.
     const bookList = [
         {
             title: "어린왕자",
@@ -14,7 +15,7 @@ export default function BookFindList() {
             averageRating: "평점",
             ratingsCount: "평가인원",
             description: "어린왕자 상세설명",
-            butLink: "구매링크",
+            buyLink: "구매링크",
         },
         {
             title: "아기돼지삼형제",
@@ -28,7 +29,7 @@ export default function BookFindList() {
             averageRating: "평점",
             ratingsCount: "평가인원",
             description: "아기돼지삼형제 상세설명",
-            butLink: "구매링크",
+            buyLink: "구매링크",
         },
     ];
     return (
