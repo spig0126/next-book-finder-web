@@ -13,7 +13,7 @@ export default function BookFindList() {
             pageCount: "쪽수",
             averageRating: "평점",
             ratingsCount: "평가인원",
-            description: "상세설명",
+            description: "어린왕자 상세설명",
             butLink: "구매링크",
         },
         {
@@ -27,7 +27,7 @@ export default function BookFindList() {
             pageCount: "쪽수",
             averageRating: "평점",
             ratingsCount: "평가인원",
-            description: "상세설명",
+            description: "아기돼지삼형제 상세설명",
             butLink: "구매링크",
         },
     ];
