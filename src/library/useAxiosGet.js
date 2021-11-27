@@ -25,8 +25,8 @@ function useAxiosGet(inputData, searchRange) {
             inputData,
             searchRange
         )}`);
-        setTotalItems(response.totalItems);
-        setBookArray(response.items);
+        setTotalItems(response.data.totalItems);
+        setBookArray(response.data.items);
             
     }, []);
 
