@@ -4,15 +4,24 @@ import useAxiosGet from "../library/useAxiosGet";
 
 export default function Form({ APIData, setAPIData }) {
     const [searchKeyword, setsearchKeyword] = useState("");
-    const [fetchData, refetch] = useAxiosGet();
+    const [select, setSelect] = useState("");
 
-    const handleChange = (e) => {
+
+    const handleChangeInput = (e) => {
         setsearchKeyword(e.target.value);
         // console.log(searchKeyword);
     };
+    const handleChangeSelect = (e) => {
+        setSelect(e.target.value);
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const { totalItems, bookArray } = useAxiosGet(searchKeyword, select);
+    }
 
     return (
-        <SearchForm onSubmit={refetch("Elizabeth", "title")}>
+        <SearchForm onSubmit={onSubmit}>
             <select name="searchRange" required={true}>
                 <option value="all">전체</option>
                 <option value="title">제목</option>
@@ -22,7 +31,7 @@ export default function Form({ APIData, setAPIData }) {
             <Input
                 placeholder="작가 또는 제목을 입력하세요"
                 value={searchKeyword}
-                onChange={handleChange}
+                onChange={handleChangeInput}
             ></Input>
             <Button>Search</Button>
         </SearchForm>
