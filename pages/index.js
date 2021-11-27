@@ -1,9 +1,9 @@
-import Form from "../src/components/Form";
+import SearchForm from "../src/components/SearchForm";
 import BookFindList from "../src/components/BookFindList";
 export default function Home() {
     return (
         <div>
-            <Form />
+            <SearchForm />
             <BookFindList />
         </div>
     );
