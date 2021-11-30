@@ -1,10 +1,14 @@
 import SearchForm from "../src/components/SearchForm";
 import BookFindList from "../src/components/BookFindList";
+import { ResultContextProvider } from "../src/contexts/context"; //provider 불러오기
+
 export default function Home() {
     return (
-        <div>
-            <SearchForm />
-            <BookFindList />
-        </div>
+        <ResultContextProvider>
+            <div>
+                <SearchForm />
+                <BookFindList />
+            </div>
+        </ResultContextProvider>
     );
 }

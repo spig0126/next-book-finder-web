@@ -1,9 +1,13 @@
 import Book from "./Book";
 import styled from "styled-components";
+import { useState } from "react";
+import { useResultContext } from "../contexts/context";
 export default function BookFindList() {
     // 2. Use at the root of your app
     //bookList만 api에서 받아온 걸로 수정하면 됨.
-    const bookList = [
+    const { bookList } = useResultContext();
+    console.log("items2: ", bookList);
+    /*const bookList = [
         {
             id: "id1",
             title: "어린왕자",
@@ -37,10 +41,14 @@ export default function BookFindList() {
             smallThumbnail:
                 "http://books.google.com/books/content?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE70BvHGPZAp1cyEUyblB6VTCfBmvoxK8TX35QNO2LIrCPRoc4JTLTTLzDeJvT93gdhkEj4WXiNwNpOyYFXypLZ8q_3bcvLQQVxiPax-kvMmOR7aq9J3IxsaHXXnZVX2djbBRR9I6&source=gbs_api",
         },
-    ];
-    const books = bookList.map((book, index) => (
-        <Book key={book.id} index={index} book={book} />
-    ));
+    ];*/
+
+    const books =
+        bookList &&
+        bookList.map((book, index) => (
+            <Book key={book.id} index={index} book={book} />
+        ));
+
     return (
         <div>
             <BookContainer>{books}</BookContainer>
