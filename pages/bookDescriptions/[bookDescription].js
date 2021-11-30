@@ -4,11 +4,12 @@ import { withRouter } from "next/router";
 import Link from "next/link";
 function bookDescription({ router: { query } }) {
     const book = JSON.parse(query.book);
+
     return (
         <Wrap spacing="0.3rem" align="center">
-            <BookImage src={book.smallThumbnail} />
-            <Description> {book.description} </Description>
-            <Link href={book.buyLink}>
+            <BookImage src={book.volumeInfo.imageLinks.smallThumbnail} />
+            <Description> {book.volumeInfo.description} </Description>
+            <Link href={book.saleInfo.buyLink}>
                 <a>
                     <Buy>click to buy</Buy>
                 </a>

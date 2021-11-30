@@ -1,34 +1,47 @@
 import styled from "styled-components";
 import { Button, Wrap } from "@chakra-ui/react";
 import Link from "next/link";
-
+/*
+const smallThumbnail = book.volumeInfo.imageLinks.smallThumbnail;
+const title = book.volumeInfo.title;
+const authors = book.volumeInfo.authors;
+const pageCount = book.volumeInfo.pageCount;
+const publisher = book.volumeInfo.publisher;
+const publishedDate = book.volumeInfo.publishedDate;
+const averageRating = book.volumeInfo.averageRating;
+const ratingsCount = book.volumeInfo.ratingsCount;
+const description = book.volumeInfo.description;
+const buyLink = book.saleInfo.buyLink;
+*/
 export default function Book({ book }) {
     return (
         <Link
             href={{
-                pathname: `/bookDescriptions/${book.title}`,
+                pathname: `/bookDescriptions/${book.volumeInfo.title}`,
                 query: { book: JSON.stringify(book) },
                 //array 문자화
             }}
-            as={`/bookDescriptions/${book.title}`}
+            as={`/bookDescriptions/${book.volumeInfo.title}`}
             passHref
         >
             <a>
                 <Button But width="20rem" height="10rem">
                     <Wrap spacing="0.3rem" align="center">
                         <BookImage
-                            src={book.smallThumbnail}
+                            src={book.volumeInfo.imageLinks.smallThumbnail}
                             height="60rem"
                             width="60rem"
                         />
-                        <Title>{book.title}</Title>
-                        <Authors>{book.authors}</Authors>
-                        <Page>{book.pageCount}</Page>
+                        <Title>{book.volumeInfo.title}</Title>
+                        <Authors>{book.volumeInfo.authors}</Authors>
+                        <Page>{book.volumeInfo.pageCount}</Page>
                         <Publish>
-                            {book.publisher} {book.published}
+                            {book.volumeInfo.publisher}{" "}
+                            {book.volumeInfo.publishedDate}
                         </Publish>
                         <Rating>
-                            {book.averageRating} {book.ratingsCount}
+                            {book.volumeInfo.averageRating}{" "}
+                            {book.volumeInfo.ratingsCount}
                         </Rating>
                     </Wrap>
                 </Button>
