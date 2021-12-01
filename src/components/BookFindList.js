@@ -5,7 +5,6 @@ import { useResultContext } from "../context/context";
 export default function BookFindList() {
     const { bookData } = useResultContext();
 
-    console.log("bookData:", bookData);
     const books =
         bookData.items &&
         bookData.items.map((book, index) => (
