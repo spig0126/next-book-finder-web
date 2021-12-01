@@ -17,7 +17,7 @@ export default function BookFindList() {
             px={{ base: "5%", md: "15%" }}
         >
             <Text fontSize={{ base: "2xl", md: "4xl" }} mb="1rem">
-                search results: {bookData.totalItems}
+                searched results: {bookData.totalItems}
             </Text>
             <Wrap name="BookContainer" direction="row" spacing={5}>
                 {books}
