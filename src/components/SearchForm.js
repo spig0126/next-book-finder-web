@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useAxiosGet from "../library/useSearchBookData";
 import {
     Input,
@@ -12,12 +12,10 @@ import { FaSearch as SearchIcon } from "react-icons/fa";
 import { useRouter } from "next/dist/client/router";
 
 export default function SearchForm() {
-    //local input data
     const [searchKeyword, setSearchKeyword] = useState("");
     const [searchRange, setSearchRange] = useState("all");
     const router = useRouter();
 
-    //API request parameters
     const { isLoading, isError, setSearchQuery } = useAxiosGet("flower");
 
     const handleChangeInput = (e) => {

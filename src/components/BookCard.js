@@ -1,13 +1,8 @@
 import styled from "styled-components";
-import { Button, Flex, Image, Box, Text, Wrap, Center } from "@chakra-ui/react";
-import Link from "next/link";
+import { Button, Flex, Image, Text } from "@chakra-ui/react";
 
 import { useRouter } from "next/router";
 function BookCard({ book }) {
-    // const authors = book.authors.map((author, index) => (
-    //     ", " + author
-    // ));
-    console.log(book);
     const router = useRouter();
     return (
         <Button

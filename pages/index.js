@@ -1,7 +1,6 @@
 import { Container, Flex, Center, Spacer } from "@chakra-ui/layout";
 
 import SearchForm from "../src/components/SearchForm";
-import BookFindList from "../src/components/BookFindList";
 import BestSellersList from "../src/components/bestSellers/BestSellersList";
 
 export default function Home() {
