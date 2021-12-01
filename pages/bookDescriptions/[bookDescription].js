@@ -1,23 +1,29 @@
 import styled from "styled-components";
 import { Wrap } from "@chakra-ui/react";
-import { withRouter } from "next/router";
+
 import Link from "next/link";
-function bookDescription({ router: { query } }) {
-    const book = JSON.parse(query.book);
+import { useRouter } from "next/router";
+import { Button } from "@chakra-ui/button";
+export default function bookDescription() {
+    const router = useRouter();
+    const { title, thumbnail, buyLink, description } = router.query;
 
     return (
         <Wrap spacing="0.3rem" align="center">
-            <BookImage src={book.volumeInfo.imageLinks.smallThumbnail} />
-            <Description> {book.volumeInfo.description} </Description>
-            <Link href={book.saleInfo.buyLink}>
-                <a>
-                    <Buy>click to buy</Buy>
-                </a>
-            </Link>
+            <BookImage src={thumbnail} />
+            <Description>{description}</Description>
+
+            <Button
+                onClick={() => {
+                    router.push(buyLink);
+                }}
+            >
+                Buy
+            </Button>
         </Wrap>
     );
 }
-export default withRouter(bookDescription);
+
 const Description = styled.div``;
 const Buy = styled.div``;
 const BookImage = styled.img``;

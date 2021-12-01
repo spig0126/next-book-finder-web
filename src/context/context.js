@@ -5,11 +5,11 @@ export const ResultContext = createContext(undefined);
 // createContext 선언
 
 export function ResultContextProvider({ children }) {
-    const [bookList, setBookList] = useState(null); ////글로벌하게 관리할 state
+    const [bookData, setBookData] = useState([]); ////글로벌하게 관리할 state
 
     const value = {
-        bookList,
-        setBookList,
+        bookData,
+        setBookData,
     };
 
     return (

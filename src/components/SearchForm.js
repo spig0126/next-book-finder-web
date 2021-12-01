@@ -18,7 +18,7 @@ export default function SearchForm() {
     const router = useRouter();
 
     //API request parameters
-    const { isLoading, isError, data, setSearchQuery } = useAxiosGet("flower");
+    const { isLoading, isError, setSearchQuery } = useAxiosGet("flower");
 
     const handleChangeInput = (e) => {
         setSearchKeyword(e.target.value);
@@ -41,10 +41,6 @@ export default function SearchForm() {
         } else if (searchRange === "publisher") {
             setSearchQuery(`inpublisher:${searchKeyword}`);
         }
-
-        console.log(data);
-        console.log("searchQuery: " + searchRange);
-
         router.push("./SearchResultPage");
     };
 

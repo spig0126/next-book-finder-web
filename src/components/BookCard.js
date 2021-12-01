@@ -2,53 +2,66 @@ import styled from "styled-components";
 import { Button, Flex, Image, Box, Text, Wrap, Center } from "@chakra-ui/react";
 import Link from "next/link";
 
-export default function BookCard({ book }) {
+import { useRouter } from "next/router";
+function BookCard({ book }) {
     // const authors = book.authors.map((author, index) => (
     //     ", " + author
     // ));
+    console.log(book);
+    const router = useRouter();
     return (
-        <Link
-            href={{
-                pathname: `/bookDescriptions/${book.title}`,
-                query: { book: JSON.stringify(book) },
-                //array 문자화
+        <Button
+            h="14rem"
+            p="0"
+            mb="1rem"
+            variant="filled"
+            bgColor="white"
+            onClick={() => {
+                router.push({
+                    pathname: `/bookDescriptions/${book.id}`,
+                    query: {
+                        title: book.volumeInfo.title,
+                        thumbnail:
+                            book.volumeInfo &&
+                            book.volumeInfo.imageLinks &&
+                            book.volumeInfo.imageLinks.thumbnail,
+                        buyLink: book && book.saleInfo && book.saleInfo.buyLink,
+                        description:
+                            book.volumeInfo && book.volumeInfo.description,
+                    },
+                });
             }}
-            as={`/bookDescriptions/${book.title}`}
-            w="30%"
-            passHref
         >
-            <a>
-                <Button
+            <Flex w="100%" spacing="0.3rem" align="center">
+                <Image
+                    src={
+                        book.volumeInfo &&
+                        book.volumeInfo.imageLinks &&
+                        book.volumeInfo.imageLinks.thumbnail
+                    }
                     h="14rem"
-                    p="0"
-                    mb="1rem"
-                    variant="filled"
-                    bgColor="white"
-                >
-                    <Flex w="100%" spacing="0.3rem" align="center">
-                        <Image
-                            src={book.imageLinks.thumbnail}
-                            h="14rem"
-                            w="10rem"
-                            objectFit="fill"
-                        />
-                        <Flex
-                            flexDir="column"
-                            alignItems="flex-start"
-                            ml="2rem"
-                        >
-                            <Text fontSize="xl">{book.title}</Text>
-                            <Authors>by {book.authors}</Authors>
-                            <Publish>{book.publisher}</Publish>
-                            <Text>{book.publishedDate}</Text>
-                        </Flex>
-                    </Flex>
-                </Button>
-            </a>
-        </Link>
+                    w="10rem"
+                    objectFit="fill"
+                />
+                <Flex flexDir="column" alignItems="flex-start" ml="2rem">
+                    <Text fontSize="xl">
+                        {book.volumeInfo && book.volumeInfo.title}
+                    </Text>
+                    <Authors>
+                        by {book.volumeInfo && book.volumeInfo.authors}
+                    </Authors>
+                    <Publish>
+                        {book.volumeInfo && book.volumeInfo.publisher}
+                    </Publish>
+                    <Text>
+                        {book.volumeInfo && book.volumeInfo.publishedDate}
+                    </Text>
+                </Flex>
+            </Flex>
+        </Button>
     );
 }
-
+export default BookCard;
 const Title = styled.div`
     font-size: 2rem;
     font-weight: bold;

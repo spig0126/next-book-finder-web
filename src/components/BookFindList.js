@@ -2,16 +2,19 @@ import Book from "./BookCard";
 
 import { Wrap, Text, Flex } from "@chakra-ui/layout";
 import styled from "styled-components";
+import useSearchBookData from "../library/useSearchBookData";
+import { useResultContext } from "../context/context";
 export default function BookFindList() {
     // 2. Use at the root of your app
     //bookList만 api에서 받아온 걸로 수정하면 됨.
+    const { bookData } = useResultContext();
 
-    //검색 결과 test
-    const input = "Elizabeth";
-
-    const books = bookList.items.map((book, index) => (
-        <Book key={book.id} index={index} book={book.volumeInfo} />
-    ));
+    console.log("bookData:", bookData);
+    const books =
+        bookData.items &&
+        bookData.items.map((book, index) => (
+            <Book key={book.id} index={index} book={book} />
+        ));
     return (
         <Flex
             flexDir="column"
@@ -19,7 +22,7 @@ export default function BookFindList() {
             px={{ base: "5%", md: "15%" }}
         >
             <Text fontSize={{ base: "2xl", md: "4xl" }} mb="1rem">
-                "{input}" search results: {bookList.totalItems}
+                search results: {bookData.totalItems}
             </Text>
             <Wrap name="BookContainer" direction="row" spacing={5}>
                 {books}
@@ -27,9 +30,9 @@ export default function BookFindList() {
         </Flex>
     );
 }
-const BookContainer = styled.div``;
 
 //test cases
+/*
 const bookList = {
     kind: "books#volumes",
     totalItems: 541,
@@ -948,3 +951,4 @@ const bookList = {
         },
     ],
 };
+*/
