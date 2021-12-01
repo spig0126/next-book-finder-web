@@ -5,13 +5,13 @@ import { FaSearch as SearchIcon } from "react-icons/fa";
 import { useRouter } from "next/dist/client/router";
 
 export default function SearchForm() {
-    //local input data 
+    //local input data
     const [searchKeyword, setSearchKeyword] = useState("");
     const [searchRange, setSearchRange] = useState("all");
     const router = useRouter();
 
     //API request parameters
-    const {isLoading, isError, data, setSearchQuery} = useAxiosGet("flower");
+    const { isLoading, isError, data, setSearchQuery } = useAxiosGet("flower");
 
     const handleChangeInput = (e) => {
         setSearchKeyword(e.target.value);
@@ -27,18 +27,16 @@ export default function SearchForm() {
         e.preventDefault();
         if (searchRange === "all") {
             setSearchQuery(`${searchKeyword}.replace(" ", "+")}`);
-        }
-        else if (searchRange === "title") {
-            setSearchQuery(`intitle:${searchKeyword}`)
-        }
-        else if (searchRange === "author") {
-            setSearchQuery(`nauthor:${searchKeyword}`)
-        }
-        else if (searchRange === "publisher") { 
-            setSearchQuery(`inpublisher:${searchKeyword}`)
+        } else if (searchRange === "title") {
+            setSearchQuery(`intitle:${searchKeyword}`);
+        } else if (searchRange === "author") {
+            setSearchQuery(`nauthor:${searchKeyword}`);
+        } else if (searchRange === "publisher") {
+            setSearchQuery(`inpublisher:${searchKeyword}`);
         }
 
         console.log(data);
+        console.log("items: ", data.items);
         console.log("searchQuery: " + searchRange);
 
         router.push("./SearchResultPage")
