@@ -2,8 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function useFetchBestSellerData() {
-    const listNameTest = "Hardcover";
-
     const [bestSellerData, setBestSellerData] = useState({});
     const [bestSellerQuery, setBestSellerQuery] = useState("hardcover-fiction");
     const [isLoading, setIsLoading] = useState(null);
@@ -27,8 +25,7 @@ export default function useFetchBestSellerData() {
         };
 
         getBestSellersData();
-
-    }, []);
+    }, [bestSellerQuery]);
         
     return { setBestSellerQuery, bestSellerData, isLoading, isError };
 }
