@@ -47,8 +47,8 @@ export default function SearchForm() {
     return (
         <FormControl onSubmit={search} w={{ base: "70%", md: "50%"}} mx="auto">
             <Flex>
-                <Select name="searchRange" onChange={handleChangeSelect} selected required={true} h="3rem" variant="unstyled" w="6rem" focusBorderColor="none">
-                    <option value="all">전체</option>
+                <Select name="searchRange" onChange={handleChangeSelect} required={true} h="3rem" variant="unstyled" w="6rem" focusBorderColor="none">
+                    <option value="all" selected>전체</option>
                     <option value="title">제목</option>
                     <option value="author">저자</option>
                     <option value="publisher">출판사</option>
