@@ -1,12 +1,21 @@
 import { useState, useEffect } from "react";
 import useAxiosGet from "../library/useSearchBookData";
-import styled from "styled-components";
-import { FormControl, Input, Button, Select } from "@chakra-ui/react";
+import {
+    Input,
+    Select,
+    InputRightElement,
+    IconButton,
+    FormControl,
+    Flex,
+} from "@chakra-ui/react";
+import { FaSearch as SearchIcon } from "react-icons/fa";
+import { useRouter } from "next/dist/client/router";
 
 export default function SearchForm() {
     //local input data
     const [searchKeyword, setSearchKeyword] = useState("");
     const [searchRange, setSearchRange] = useState("all");
+    const router = useRouter();
 
     //API request parameters
     const { isLoading, isError, data, setSearchQuery } = useAxiosGet("flower");
@@ -16,6 +25,9 @@ export default function SearchForm() {
     };
     const handleChangeSelect = (e) => {
         setSearchRange(e.target.value);
+    };
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter") search(e);
     };
 
     const search = (e) => {
@@ -33,30 +45,53 @@ export default function SearchForm() {
         console.log(data);
         console.log("items: ", data.items);
         console.log("searchQuery: " + searchRange);
+
+        router.push("./SearchResultPage");
     };
 
     return (
-        <StyledForm onSubmit={search}>
-            <Select
-                name="searchRange"
-                onChange={handleChangeSelect}
-                selected
-                required={true}
-            >
-                <option value="all">전체</option>
-                <option value="title">제목</option>
-                <option value="author">저자</option>
-                <option value="publisher">출판사</option>
-            </Select>
-            <Input
-                placeholder="작가 또는 제목을 입력하세요"
-                value={searchKeyword}
-                onChange={handleChangeInput}
-                m="100"
-            ></Input>
-            <Button>Search</Button>
-        </StyledForm>
+        <FormControl onSubmit={search} w={{ base: "70%", md: "50%" }} mx="auto">
+            <Flex>
+                <Select
+                    name="searchRange"
+                    onChange={handleChangeSelect}
+                    required={true}
+                    h="3rem"
+                    variant="unstyled"
+                    w="6rem"
+                    focusBorderColor="none"
+                >
+                    <option value="all" selected>
+                        전체
+                    </option>
+                    <option value="title">제목</option>
+                    <option value="author">저자</option>
+                    <option value="publisher">출판사</option>
+                </Select>
+                <Input
+                    placeholder="작가 또는 제목을 입력하세요"
+                    value={searchKeyword}
+                    onChange={handleChangeInput}
+                    onKeyPress={handleKeyPress}
+                    h="3rem"
+                    variant="outline"
+                    color="black"
+                    bgColor="white"
+                    borderColor="grey"
+                    focusBorderColor="pink"
+                    borderRadius="3rem"
+                ></Input>
+                <InputRightElement>
+                    <IconButton
+                        icon={<SearchIcon />}
+                        onClick={search}
+                        h="3rem"
+                        variant="ghost"
+                        color="grey"
+                        mr="1rem"
+                    />
+                </InputRightElement>
+            </Flex>
+        </FormControl>
     );
 }
-
-const StyledForm = styled.form``;
