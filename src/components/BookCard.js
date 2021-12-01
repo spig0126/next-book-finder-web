@@ -1,8 +1,11 @@
 import styled from "styled-components";
-import { Button, Wrap } from "@chakra-ui/react";
+import { Button, Flex, Image, Box, Text, Wrap, Center} from "@chakra-ui/react";
 import Link from "next/link";
 
-export default function Book({ book }) {
+export default function BookCard({ book }) {
+    // const authors = book.authors.map((author, index) => (
+    //     ", " + author
+    // ));
     return (
         <Link
             href={{
@@ -11,35 +14,49 @@ export default function Book({ book }) {
                 //array 문자화
             }}
             as={`/bookDescriptions/${book.title}`}
+            w="30%"
             passHref
         >
             <a>
-                <Button But width="20rem" height="10rem">
-                    <Wrap spacing="0.3rem" align="center">
-                        <BookImage
-                            src={book.smallThumbnail}
-                            height="60rem"
-                            width="60rem"
+                <Button h="14rem" p="0" mb="1rem" variant="filled" bgColor="white">
+                    <Flex  w="100%" spacing="0.3rem" align="center">
+                        <Image
+                            src={book.imageLinks.thumbnail}
+                            h="14rem"
+                            w="10rem"
+                            objectFit="fill"
                         />
-                        <Title>{book.title}</Title>
-                        <Authors>{book.authors}</Authors>
-                        <Page>{book.pageCount}</Page>
-                        <Publish>
-                            {book.publisher} {book.published}
-                        </Publish>
-                        <Rating>
-                            {book.averageRating} {book.ratingsCount}
-                        </Rating>
-                    </Wrap>
+                        <Flex flexDir="column" alignItems="flex-start" ml="2rem">
+                            <Text fontSize="xl">{book.title}</Text>
+                            <Authors>by {book.authors}</Authors>
+                            <Publish>
+                                {book.publisher} 
+                            </Publish>
+                            <Text>{book.publishedDate}</Text>
+                        </Flex>
+                    </Flex>
                 </Button>
             </a>
         </Link>
     );
 }
 
-const Title = styled.div``;
-const Authors = styled.div``;
-const Page = styled.div``;
-const Publish = styled.div``;
-const Rating = styled.div``;
-const BookImage = styled.img``;
+const Title = styled.div`
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    word-wrap: break-word;
+`;
+const Authors = styled.div`
+    font-size: medium;
+    color: grey;
+    margin-bottom: 2rem;
+
+`;
+const Publish = styled.div`
+    margin-bottom: 5px;
+`;
+
+
+
+
