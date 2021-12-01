@@ -1,30 +1,59 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Flex, Text, Center, Select } from "@chakra-ui/react";
+import { Flex, Text, Center, Select, Button, Spacer } from "@chakra-ui/react";
+import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
+
 
 import useFetchBestSellerData from "../../library/useFetchBestSellerData";
+import BestSellerBookCard from "./BestSellerBookCard";
 
 export default function BestSellersList() {
     const { setBestSellerQuery, bestSellerData, isLoading, isError } = useFetchBestSellerData();
+    const [count, setCount] = useState(0);
 
+
+    const nextBook = () => {
+        if (count == Test.length - 1) setCount(0);
+        else setCount(count + 1);
+    }
+    const beforeBook = () => {
+        if (count == 0) setCount(Test.length - 3);
+        else setCount(count - 1);
+    }
     const selectList = (e) => {
         setBestSellerQuery(e.target.value);
-    }
+    } 
     
     return (
-        <Flex>
-            <Flex flexDir="column" w="30%" p="5rem 3rem">
-                <Text as="i" fontSize="6xl">Discover</Text>
-                <Text fontSize="4xl">New Books</Text>
-                <Select name="listType" onChange={selectList} required={true} variant="flushed">
+        <Flex w="100%">
+            <Flex flexDir="column" w="30%" p="10% 3rem">
+                <Text as="i" fontSize="8xl">Discover</Text>
+                <Text fontSize="6xl" mb="1rem">New Books</Text>
+                <Select w="50%" name="listType" onChange={selectList} required={true} variant="flushed">
                     <option value="hardcover-fiction" selected>Fiction</option>
-                    <option value="ardcover-nonFiction">Nonfiction</option>
+                    <option value="hardcover-nonFiction">Nonfiction</option>
                     <option value="advice-how-to-and-miscellaneous">Advice, How-To & Miscellaneous</option>
                     <option value="business">Business</option>
                 </Select>
             </Flex>
-            <Flex>
-
+            <Flex alignItems="center" w="70%">
+                <Button
+                    as={BsChevronCompactLeft}
+                    onClick={beforeBook}
+                    size="lg"
+                    variant="ghost"
+                    mr="1rem"
+                />
+                <BestSellerBookCard book={Test[count]} main={false} />
+                <BestSellerBookCard book={Test[count + 1]} main={true} />
+                <BestSellerBookCard book={Test[count + 2]} main={false} />
+                <Button
+                    as={BsChevronCompactRight}
+                    onClick={nextBook}
+                    size="lg"
+                    variant="ghost"
+                    ml="1rem"
+                />
             </Flex>
         </Flex>
     )
