@@ -13,7 +13,7 @@ export default function BestSellersList() {
 
 
     const nextBook = () => {
-        if (count == Test.length - 1) setCount(0);
+        if (count == Test.length - 3) setCount(0);
         else setCount(count + 1);
     }
     const beforeBook = () => {
@@ -26,14 +26,13 @@ export default function BestSellersList() {
     
     return (
         <Flex w="100%">
-            <Flex flexDir="column" w="30%" p="10% 3rem">
+            <Flex flexDir="column" w="30%" p="10% 5rem">
                 <Text as="i" fontSize="8xl">Discover</Text>
                 <Text fontSize="6xl" mb="1rem">New Books</Text>
                 <Select w="50%" name="listType" onChange={selectList} required={true} variant="flushed">
-                    <option value="hardcover-fiction" selected>Fiction</option>
+                    <option value="hardcover-fiction">Fiction</option>
                     <option value="hardcover-nonFiction">Nonfiction</option>
                     <option value="advice-how-to-and-miscellaneous">Advice, How-To & Miscellaneous</option>
-                    <option value="business">Business</option>
                 </Select>
             </Flex>
             <Flex alignItems="center" w="70%">

@@ -1,9 +1,8 @@
-import Book from "./BookCard";
+import BookCard from "./BookCard";
 
 import { Wrap, Text, Flex } from "@chakra-ui/layout";
 import styled from "styled-components";
-import { useState } from "react";
-import { useResultContext } from "../contexts/context";
+
 export default function BookFindList() {
     // 2. Use at the root of your app
     //bookList만 api에서 받아온 걸로 수정하면 됨.
@@ -11,13 +10,8 @@ export default function BookFindList() {
     //검색 결과 test
     const input = "Elizabeth"
 
-    const { bookList } = useResultContext();
-    console.log("items2: ", bookList);
-
-    const books =
-        bookList &&
-        bookList.map((book, index) => (
-            <Book key={book.id} index={index} book={book} />
+    const books = bookList.items.map((book, index) => (
+            <BookCard key={book.id} index={index} book={book} />
         ));
 
     return (
