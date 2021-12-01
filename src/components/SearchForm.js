@@ -43,7 +43,6 @@ export default function SearchForm() {
         }
 
         console.log(data);
-        console.log("items: ", data.items);
         console.log("searchQuery: " + searchRange);
 
         router.push("./SearchResultPage");
