@@ -2,7 +2,6 @@ import { Container, Flex, Box } from "@chakra-ui/layout";
 import {Image} from "@chakra-ui/react"
 
 import SearchForm from "../src/components/SearchForm";
-import BookFindList from "../src/components/BookFindList";
 import BestSellersList from "../src/components/bestSellers/BestSellersList";
 import MainBackground from "../public/images/MainBackground2.jpg"
 export default function Home() {

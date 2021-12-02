@@ -9,5 +9,5 @@ export default function SearchResultPage() {
             <SearchForm />
             <BookFindList />
         </Box>
-    )
+    );
 }
