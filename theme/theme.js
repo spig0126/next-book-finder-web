@@ -10,6 +10,10 @@ import {
       pink: "#e6494e",
       grey: "#3b3b3b"
     },
+    fonts: {
+      heading: ["Playfair Display", "Gothic A1"],
+      body: "Gothic A1"
+    }
   });
   
   export default theme;
