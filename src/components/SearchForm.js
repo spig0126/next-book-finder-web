@@ -10,13 +10,16 @@ import {
 } from "@chakra-ui/react";
 import { FaSearch as SearchIcon } from "react-icons/fa";
 import { useRouter } from "next/dist/client/router";
+import { useResultContext } from "../context/context";
 
 export default function SearchForm() {
     const [searchKeyword, setSearchKeyword] = useState("");
     const [searchRange, setSearchRange] = useState("all");
     const router = useRouter();
 
-    const { isLoading, isError, setSearchQuery } = useAxiosGet("flower");
+    const { initialQuery, setInitialQuery } = useResultContext();
+
+    const { isLoading, isError, setSearchQuery } = useAxiosGet(initialQuery);
 
     const handleChangeInput = (e) => {
         setSearchKeyword(e.target.value);
@@ -41,7 +44,7 @@ export default function SearchForm() {
         }
         router.push("./SearchResultPage");
     };
-
+    setInitialQuery(searchKeyword);
     return (
         <FormControl onSubmit={search} w={{ base: "70%", md: "50%" }} mx="auto">
             <Flex>
