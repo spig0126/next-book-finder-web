@@ -17,9 +17,10 @@ function BookCard({ book }) {
                     query: {
                         title: book.volumeInfo.title,
                         thumbnail:
-                            book.volumeInfo &&
-                            book.volumeInfo.imageLinks &&
-                            book.volumeInfo.imageLinks.thumbnail,
+                            (book.volumeInfo &&
+                                book.volumeInfo.imageLinks &&
+                                book.volumeInfo.imageLinks.thumbnail) ||
+                            `https://storage.googleapis.com/du-prd/books/images/9780385546027.jpg`,
                         buyLink: book && book.saleInfo && book.saleInfo.buyLink,
                         description:
                             book.volumeInfo && book.volumeInfo.description,
@@ -35,9 +36,10 @@ function BookCard({ book }) {
             <Flex w="100%" spacing="0.3rem" align="center">
                 <Image
                     src={
-                        book.volumeInfo &&
-                        book.volumeInfo.imageLinks &&
-                        book.volumeInfo.imageLinks.thumbnail
+                        (book.volumeInfo &&
+                            book.volumeInfo.imageLinks &&
+                            book.volumeInfo.imageLinks.thumbnail) ||
+                        `https://storage.googleapis.com/du-prd/books/images/9780385546027.jpg`
                     }
                     h="14rem"
                     w="10rem"

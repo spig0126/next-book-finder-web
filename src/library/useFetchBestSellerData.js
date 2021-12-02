@@ -10,15 +10,16 @@ export default function useFetchBestSellerData() {
     useEffect(() => {
         const getBestSellersData = async () => {
             setIsLoading(true);
-            setIsError(false); 
+            setIsError(false);
 
             try {
-                const response = await axios.get(`https://api.nytimes.com/svc/books/v3/lists/current/${bestSellerQuery}.json?api-key=tjMAjnSX1uGpTJGgrI5ceHScPxTpQ9WM`);
+                const response = await axios.get(
+                    `https://api.nytimes.com/svc/books/v3/lists/current/${bestSellerQuery}.json?api-key=tjMAjnSX1uGpTJGgrI5ceHScPxTpQ9WM`
+                );
                 setIsLoading(true);
                 setBestSellerData(response.data.results.books);
                 console.log(bestSellerData);
-            }
-            catch (error) {
+            } catch (error) {
                 setIsError(true);
                 console.log(error);
             }
@@ -26,6 +27,6 @@ export default function useFetchBestSellerData() {
 
         getBestSellersData();
     }, [bestSellerQuery]);
-        
+
     return { setBestSellerQuery, bestSellerData, isLoading, isError };
 }
