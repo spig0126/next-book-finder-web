@@ -5,8 +5,18 @@ import { useRouter } from "next/router";
 import { Button } from "@chakra-ui/button";
 export default function bookDescription() {
     const router = useRouter();
-    const { title, thumbnail, buyLink, description } = router.query;
-
+    const {
+        title,
+        thumbnail,
+        buyLink,
+        description,
+        authors,
+        ratings,
+        ratingsCount,
+    } = router.query;
+    console.log(authors);
+    console.log(ratings);
+    console.log(ratingsCount);
     return (
         <Wrap spacing="0.3rem" align="center">
             <BookImage src={thumbnail} />

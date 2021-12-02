@@ -23,6 +23,11 @@ function BookCard({ book }) {
                         buyLink: book && book.saleInfo && book.saleInfo.buyLink,
                         description:
                             book.volumeInfo && book.volumeInfo.description,
+                        authors: book.volumeInfo && book.volumeInfo.authors,
+                        ratings:
+                            book.volumeInfo && book.volumeInfo.averageRating,
+                        ratingsCount:
+                            book.volumeInfo && book.volumeInfo.ratingsCount,
                     },
                 });
             }}
