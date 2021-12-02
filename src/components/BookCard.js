@@ -76,22 +76,3 @@ const Authors = styled.div`
 const Publish = styled.div`
     margin-bottom: 5px;
 `;
-<<<<<<< HEAD
-=======
-
-/*
-const smallThumbnail = book.volumeInfo.imageLinks.smallThumbnail;
-const title = book.volumeInfo.title;
-const authors = book.volumeInfo.authors;
-const pageCount = book.volumeInfo.pageCount;
-const publisher = book.volumeInfo.publisher;
-const publishedDate = book.volumeInfo.publishedDate;
-const averageRating = book.volumeInfo.averageRating;
-const ratingsCount = book.volumeInfo.ratingsCount;
-const description = book.volumeInfo.description;
-const buyLink = book.saleInfo.buyLink;
-*/
-
-
-
->>>>>>> e5226779919aa233665ad4c043f10a2a08bd351d
