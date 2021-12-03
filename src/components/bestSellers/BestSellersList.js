@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Flex, Text, Spacer, Select, IconButton, Heading } from "@chakra-ui/react";
+import { Flex, Text, Spacer, Grid, IconButton, Heading } from "@chakra-ui/react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
 import useFetchBestSellerData from "../../library/useFetchBestSellerData";
@@ -24,7 +24,7 @@ export default function BestSellersList({ genre, button}) {
     };
 
     return (
-        <Flex flexDir="column" px="5rem" alignItems="center">
+        <Flex flexDir="column" alignItems="center" w="90vw">
             <Flex
                 w="100vw"
                 flexDir="column"
@@ -39,22 +39,20 @@ export default function BestSellersList({ genre, button}) {
                     </>
                 )}
             </Flex>
-            <Flex alignItems="center" w="100%" mt="3rem">
-                {button && (
+            <Grid templateColumns="1fr 4fr 4fr 4fr 4fr 4fr 1fr" gap={5} alignItems="center" w="90%" mt="2rem" >
+                {button ? (
                     <IconButton
                         icon={<BsChevronCompactLeft size="md" />}
                         onClick={beforeBook}
                         size="lg"
                         variant="ghost"
                     />
-                )}
-                <Spacer />
+                ): <Spacer/>}
                 <BestSellerBookCard book={Test[count]} />
                 <BestSellerBookCard book={Test[count + 1]} />
                 <BestSellerBookCard book={Test[count + 2]} />
                 <BestSellerBookCard book={Test[count + 3]} />
                 <BestSellerBookCard book={Test[count + 4]} />
-                <Spacer />
                 {button && (
                     <IconButton
                         icon={<BsChevronCompactRight size="md" />}
@@ -63,7 +61,7 @@ export default function BestSellersList({ genre, button}) {
                     />
                 )}
                 <Spacer />
-            </Flex>
+            </Grid>
         </Flex>
     );
 }
