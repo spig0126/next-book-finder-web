@@ -33,7 +33,7 @@ export default function SearchForm({ width, margin }) {
         title: "Input Error",
         description: "입력된 검색어가 없습니다. 다시 입력해주십시오.",
         status: "error",
-        duration: 6000,
+        duration: 3000,
         isClosable: true,
         variant: "solid",
         position: "top"
@@ -63,7 +63,7 @@ export default function SearchForm({ width, margin }) {
                     name="searchRange"
                     onChange={handleChangeSelect}
                     required={true}
-                    h="3rem"
+                    h="2.5rem"
                     variant="unstyled"
                     w="6rem"
                     focusBorderColor="none"
@@ -80,7 +80,7 @@ export default function SearchForm({ width, margin }) {
                     value={searchKeyword}
                     onChange={handleChangeInput}
                     onKeyPress={handleKeyPress}
-                    h="3rem"
+                    h="2.5rem"
                     variant="outline"
                     color="black"
                     bgColor="white"
@@ -92,7 +92,7 @@ export default function SearchForm({ width, margin }) {
                     <IconButton
                         icon={<SearchIcon />}
                         onClick={search}
-                        h="3rem"
+                        h="2.5rem"
                         variant="ghost"
                         color="grey"
                         mr="1rem"

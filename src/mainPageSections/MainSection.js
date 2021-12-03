@@ -6,7 +6,7 @@ export default function MainSection() {
     return (
         <Flex w="100%">
             <Heading
-                fontColor="blue"
+                color="blue"
                 fontSize="8xl"
                 textAlign="left"
                 minW="35rem"
@@ -21,7 +21,7 @@ export default function MainSection() {
                 minH="inherit"
                 w="100%"
                 objectFit="cover"
-                mt="20"
+                mt="5rem"
             />
         </Flex>
     );

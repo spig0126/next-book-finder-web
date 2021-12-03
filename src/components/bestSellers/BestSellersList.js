@@ -39,7 +39,7 @@ export default function BestSellersList({ genre, button}) {
                     </>
                 )}
             </Flex>
-            <Grid templateColumns="1fr 4fr 4fr 4fr 4fr 4fr 1fr" gap={5} alignItems="center" w="90%" mt="2rem" >
+            <Grid templateColumns="1fr 4fr 4fr 4fr 4fr 4fr 1fr" gap={10} alignItems="center" w="90%" mt="2rem" >
                 {button ? (
                     <IconButton
                         icon={<BsChevronCompactLeft size="md" />}
