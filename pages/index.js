@@ -1,4 +1,4 @@
-import { Container, Flex, Heading, Box, Spacer } from "@chakra-ui/layout";
+import { Flex} from "@chakra-ui/layout";
 
 import BestSellersList from "../src/components/bestSellers/BestSellersList";
 import MainSection from "../src/mainPageSections/MainSection";
@@ -30,13 +30,10 @@ export default function Home() {
                 left={{ base: "0", lg: "5vw" }}
             ></Flex>
             <Flex flexDir="column" w="100%" alignItems="center">
-                <BestSellersList genre="Fiction" hlColor="white"/>
-                <BestSellersList genre="Nonfiction" hlColor="white"/>
-                <BestSellersList genre="Children's" hlColor="blue"/>
-                <BestSellersList genre="Advice, How-To & Miscellaneous" hlColor="blue" />
-
-
-
+                <BestSellersList genre="Fiction" hlColor="white" query="hardcover-fiction"/>
+                <BestSellersList genre="Nonfiction" hlColor="white" query="hardcover-nonfiction"/>
+                <BestSellersList genre="Young Adult's" hlColor="blue" query="young-adult-hardcover" />
+                <BestSellersList genre="Advice, How-To & Miscellaneous" hlColor="blue" query="advice-how-to-miscellaneous" />
             </Flex>
         </Flex>
     );
