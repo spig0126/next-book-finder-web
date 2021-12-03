@@ -7,13 +7,15 @@ import {
     IconButton,
     FormControl,
     Flex,
+    useToast,
 } from "@chakra-ui/react";
 import { FaSearch as SearchIcon } from "react-icons/fa";
 import { useRouter } from "next/dist/client/router";
 
-export default function SearchForm() {
+export default function SearchForm({ width, margin }) {
     const [searchKeyword, setSearchKeyword] = useState("");
     const [searchRange, setSearchRange] = useState("all");
+    const toast = useToast();
     const router = useRouter();
 
     const { isLoading, isError, setSearchQuery } = useAxiosGet("flower");
@@ -27,23 +29,35 @@ export default function SearchForm() {
     const handleKeyPress = (e) => {
         if (e.key === "Enter") search(e);
     };
+    const showToast = () => toast({
+        title: "Input Error",
+        description: "입력된 검색어가 없습니다. 다시 입력해주십시오.",
+        status: "error",
+        duration: 6000,
+        isClosable: true,
+        variant: "solid",
+        position: "top"
+    });
 
     const search = (e) => {
         e.preventDefault();
-        if (searchRange === "all") {
-            setSearchQuery(`${searchKeyword}.replace(" ", "+")}`);
-        } else if (searchRange === "title") {
-            setSearchQuery(`intitle:${searchKeyword}`);
-        } else if (searchRange === "author") {
-            setSearchQuery(`nauthor:${searchKeyword}`);
-        } else if (searchRange === "publisher") {
-            setSearchQuery(`inpublisher:${searchKeyword}`);
+        if (searchKeyword === "") showToast();
+        else {
+            if (searchRange === "all") {
+                setSearchQuery(`${searchKeyword}.replace(" ", "+")}`);
+            } else if (searchRange === "title") {
+                setSearchQuery(`intitle:${searchKeyword}`);
+            } else if (searchRange === "author") {
+                setSearchQuery(`nauthor:${searchKeyword}`);
+            } else if (searchRange === "publisher") {
+                setSearchQuery(`inpublisher:${searchKeyword}`);
+            }
+            router.push("./SearchResultPage");
         }
-        router.push("./SearchResultPage");
     };
 
     return (
-        <FormControl onSubmit={search} w={{ base: "70%", md: "50%" }} mx="auto">
+        <FormControl onSubmit={search} w={width} m={margin}>
             <Flex>
                 <Select
                     name="searchRange"
@@ -70,9 +84,9 @@ export default function SearchForm() {
                     variant="outline"
                     color="black"
                     bgColor="white"
-                    borderColor="grey"
-                    focusBorderColor="pink"
-                    borderRadius="3rem"
+                    borderColor="blue"
+                    focusBorderColor="yellow"
+                    borderRadius="1rem"
                 ></Input>
                 <InputRightElement>
                     <IconButton
