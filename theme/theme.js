@@ -5,12 +5,12 @@ import { Fonts } from "./fonts";
 const theme = extendTheme({
     ...defaultTheme,
     colors: {
-        beige: "#f4ecd5",
+        beige: "#f0f0f0",
         pink: "#e6494e",
         grey: "#3b3b3b",
         blue: "#002d4f",
         white: "#ffffff",
-        yellow: "#ffd500"
+        yellow: "#fcdc35"
     },
     fonts: {
         heading: "Raleway",
