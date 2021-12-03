@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "../theme/theme";
+import Fonts from "../theme/fonts";
 import { ResultContextProvider } from "../src/context/context";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
