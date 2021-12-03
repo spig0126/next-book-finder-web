@@ -10,15 +10,18 @@ export default function BookFindList() {
         bookData.items.map((book, index) => (
             <Book key={book.id} index={index} book={book} />
         ));
+    
     return (
         <Flex
             flexDir="column"
             py={{ base: "1rem", md: "3rem" }}
-            px={{ base: "5%", md: "15%" }}
+            px={{ base: "5%", md: "5rem" }}
+            alignItems="center"
+            color="blue"
         >
-            <Text fontSize={{ base: "2xl", md: "4xl" }} mb="1rem">
-                searched results: {bookData.totalItems}
-            </Text>
+            <Text ontSize="2xl" mt="2rem" h="1.5rem">Your</Text>
+            <Text fontSize="4xl" fontWeight="bold" mb="2rem"> SEARCH RESULTS ({bookData.totalItems})</Text>
+
             <Wrap name="BookContainer" direction="row" spacing={5}>
                 {books}
             </Wrap>
