@@ -1,12 +1,11 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Flex, Text, Spacer, Grid, IconButton, Heading, Box } from "@chakra-ui/react";
+import { useState } from "react";
+import { Flex, Text, Grid, IconButton, Heading, Box } from "@chakra-ui/react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
 import useFetchBestSellerData from "../../library/useFetchBestSellerData";
 import BestSellerBookCard from "./BestSellerBookCard";
 
-export default function BestSellersList({ genre, button, hlColor}) {
+export default function BestSellersList({ genre, hlColor}) {
     const { setBestSellerQuery, bestSellerData, isLoading, isError } =
         useFetchBestSellerData();
     const [count, setCount] = useState(0);
@@ -30,41 +29,32 @@ export default function BestSellersList({ genre, button, hlColor}) {
                 flexDir="column"
                 alignItems="center"
             >
-                {genre !== "all" && (
-                    <>
-                        <Box w="2rem" h="0.5px" m="1rem" bgColor={hlColor}/>
-                        <Text fontSize="3xl">
-                        {genre}
-                        </Text>
-                        <Heading fontSize="5xl">BESTSELLERS</Heading>
-                        <Box w="2rem" h="0.5px" m="1rem" bgColor={hlColor}/>
-                    </>
-                )}
+                <Box w="2rem" h="0.5px" m="1rem" bgColor={hlColor}/>
+                <Text fontSize="3xl">
+                {genre}
+                </Text>
+                <Heading fontSize="5xl">BESTSELLERS</Heading>
+                <Box w="2rem" h="0.5px" m="1rem" bgColor={hlColor}/>
             </Flex>
             <Grid templateColumns="1fr 4fr 4fr 4fr 4fr 4fr 1fr" gap={10} alignItems="center" w="90%" mt="2rem" >
-                {button ? (
-                    <IconButton
-                        icon={<BsChevronCompactLeft size="md" />}
-                        onClick={beforeBook}
-                        size="lg"
-                        variant="ghost"
-                        _hover={{bgColor:"yellow", color:"blue"}}
-                    />
-                ): <Spacer/>}
+                <IconButton
+                    icon={<BsChevronCompactLeft size="md" />}
+                    onClick={beforeBook}
+                    size="lg"
+                    variant="ghost"
+                    _hover={{bgColor:"yellow", color:"blue"}}
+                />
                 <BestSellerBookCard book={Test[count]} />
                 <BestSellerBookCard book={Test[count + 1]} />
                 <BestSellerBookCard book={Test[count + 2]} />
                 <BestSellerBookCard book={Test[count + 3]} />
                 <BestSellerBookCard book={Test[count + 4]} />
-                {button && (
-                    <IconButton
-                        icon={<BsChevronCompactRight size="md" />}
-                        onClick={nextBook}
-                        variant="ghost"
-                        _hover={{bgColor:"yellow", color:"blue"}}
-                    />
-                )}
-                <Spacer />
+                <IconButton
+                    icon={<BsChevronCompactRight size="md" />}
+                    onClick={nextBook}
+                    variant="ghost"
+                    _hover={{bgColor:"yellow", color:"blue"}}
+                />
             </Grid>
         </Flex>
     );
