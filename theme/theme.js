@@ -1,20 +1,21 @@
-import {
-    extendTheme,
-    defaultTheme,
-  } from "@chakra-ui/react";
-  
-  const theme = extendTheme({
+import { extendTheme, defaultTheme } from "@chakra-ui/react";
+import { FaRegBell } from "react-icons/fa";
+import { Fonts } from "./fonts";
+
+const theme = extendTheme({
     ...defaultTheme,
     colors: {
-      beige: "#f4ecd5",
-      pink: "#e6494e",
-      grey: "#3b3b3b"
+        beige: "#f4ecd5",
+        pink: "#e6494e",
+        grey: "#3b3b3b",
+        blue: "#002d4f",
+        white: "#ffffff",
+        yellow: "#ffd500"
     },
     fonts: {
-      heading: ["Playfair Display", "Gothic A1"],
-      body: "Gothic A1"
-    }
-  });
-  
-  export default theme;
-  
+        heading: "Raleway",
+        body: "Raleway",
+    },
+});
+
+export default theme;
