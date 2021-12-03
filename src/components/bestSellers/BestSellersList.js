@@ -6,7 +6,7 @@ import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import useFetchBestSellerData from "../../library/useFetchBestSellerData";
 import BestSellerBookCard from "./BestSellerBookCard";
 
-export default function BestSellersList({ genre}) {
+export default function BestSellersList({ genre, button}) {
     const { setBestSellerQuery, bestSellerData, isLoading, isError } =
         useFetchBestSellerData();
     const [count, setCount] = useState(0);
@@ -40,12 +40,14 @@ export default function BestSellersList({ genre}) {
                 )}
             </Flex>
             <Flex alignItems="center" w="100%" mt="3rem">
-                <IconButton
-                    icon={<BsChevronCompactLeft size="md" />}
-                    onClick={beforeBook}
-                    size="lg"
-                    variant="ghost"
-                />
+                {button && (
+                    <IconButton
+                        icon={<BsChevronCompactLeft size="md" />}
+                        onClick={beforeBook}
+                        size="lg"
+                        variant="ghost"
+                    />
+                )}
                 <Spacer />
                 <BestSellerBookCard book={Test[count]} />
                 <BestSellerBookCard book={Test[count + 1]} />
@@ -53,11 +55,13 @@ export default function BestSellersList({ genre}) {
                 <BestSellerBookCard book={Test[count + 3]} />
                 <BestSellerBookCard book={Test[count + 4]} />
                 <Spacer />
-                <IconButton
-                    icon={<BsChevronCompactRight size="md" />}
-                    onClick={nextBook}
-                    variant="ghost"
-                />
+                {button && (
+                    <IconButton
+                        icon={<BsChevronCompactRight size="md" />}
+                        onClick={nextBook}
+                        variant="ghost"
+                    />
+                )}
                 <Spacer />
             </Flex>
         </Flex>
