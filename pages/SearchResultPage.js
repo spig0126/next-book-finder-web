@@ -1,13 +1,16 @@
 import BookFindList from "../src/components/BookFindList";
 import SearchForm from "../src/components/SearchForm";
 
-import { Box } from "@chakra-ui/layout";
+import { Flex, Spacer, Text } from "@chakra-ui/layout";
 
 export default function SearchResultPage() {
     return (
-        <Box mt="5rem">
-            <SearchForm />
+        <Flex flexDir="column" w="100%">
+            <Flex>
+                <Spacer />
+                <SearchForm width="30vw" margin="3rem 5rem" />
+            </Flex>
             <BookFindList />
-        </Box>
-    )
+        </Flex>
+    );
 }

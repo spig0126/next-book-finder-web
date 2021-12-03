@@ -1,17 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useAxiosGet from "../library/useSearchBookData";
-import { Input, Select, InputRightElement, IconButton, FormControl, Flex } from "@chakra-ui/react";
+import {
+    Input,
+    Select,
+    InputRightElement,
+    IconButton,
+    FormControl,
+    Flex,
+    useToast,
+} from "@chakra-ui/react";
 import { FaSearch as SearchIcon } from "react-icons/fa";
 import { useRouter } from "next/dist/client/router";
 
-export default function SearchForm() {
-    //local input data
+export default function SearchForm({ width, margin }) {
     const [searchKeyword, setSearchKeyword] = useState("");
     const [searchRange, setSearchRange] = useState("all");
+    const toast = useToast();
     const router = useRouter();
 
-    //API request parameters
-    const { isLoading, isError, data, setSearchQuery } = useAxiosGet("flower");
+    const { isLoading, isError, setSearchQuery } = useAxiosGet("flower");
 
     const handleChangeInput = (e) => {
         setSearchKeyword(e.target.value);
@@ -20,33 +27,50 @@ export default function SearchForm() {
         setSearchRange(e.target.value);
     };
     const handleKeyPress = (e) => {
-        if(e.key === "Enter") search(e);
-    }
+        if (e.key === "Enter") search(e);
+    };
+    const showToast = () => toast({
+        title: "Input Error",
+        description: "입력된 검색어가 없습니다. 다시 입력해주십시오.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        variant: "solid",
+        position: "top"
+    });
 
     const search = (e) => {
         e.preventDefault();
-        if (searchRange === "all") {
-            setSearchQuery(`${searchKeyword}.replace(" ", "+")}`);
-        } else if (searchRange === "title") {
-            setSearchQuery(`intitle:${searchKeyword}`);
-        } else if (searchRange === "author") {
-            setSearchQuery(`nauthor:${searchKeyword}`);
-        } else if (searchRange === "publisher") {
-            setSearchQuery(`inpublisher:${searchKeyword}`);
+        if (searchKeyword === "") showToast();
+        else {
+            if (searchRange === "all") {
+                setSearchQuery(`${searchKeyword}.replace(" ", "+")}`);
+            } else if (searchRange === "title") {
+                setSearchQuery(`intitle:${searchKeyword}`);
+            } else if (searchRange === "author") {
+                setSearchQuery(`nauthor:${searchKeyword}`);
+            } else if (searchRange === "publisher") {
+                setSearchQuery(`inpublisher:${searchKeyword}`);
+            }
+            router.push("./SearchResultPage");
         }
-
-        console.log(data);
-        console.log("items: ", data.items);
-        console.log("searchQuery: " + searchRange);
-
-        router.push("./SearchResultPage")
-    }
+    };
 
     return (
-        <FormControl onSubmit={search} w={{ base: "70%", md: "50%"}} mx="auto">
+        <FormControl onSubmit={search} w={width} m={margin}>
             <Flex>
-                <Select name="searchRange" onChange={handleChangeSelect} required={true} h="3rem" variant="unstyled" w="6rem" focusBorderColor="none">
-                    <option value="all" selected>전체</option>
+                <Select
+                    name="searchRange"
+                    onChange={handleChangeSelect}
+                    required={true}
+                    h="2.5rem"
+                    variant="unstyled"
+                    w="6rem"
+                    focusBorderColor="none"
+                >
+                    <option value="all" selected>
+                        전체
+                    </option>
                     <option value="title">제목</option>
                     <option value="author">저자</option>
                     <option value="publisher">출판사</option>
@@ -56,16 +80,23 @@ export default function SearchForm() {
                     value={searchKeyword}
                     onChange={handleChangeInput}
                     onKeyPress={handleKeyPress}
-                    h="3rem" 
+                    h="2.5rem"
                     variant="outline"
                     color="black"
                     bgColor="white"
-                    borderColor="grey"
-                    focusBorderColor="pink"
-                    borderRadius="3rem"
+                    borderColor="blue"
+                    focusBorderColor="yellow"
+                    borderRadius="1rem"
                 ></Input>
                 <InputRightElement>
-                    <IconButton icon={<SearchIcon />} onClick={search}  h="3rem" variant="ghost" color="grey" mr="1rem"/>
+                    <IconButton
+                        icon={<SearchIcon />}
+                        onClick={search}
+                        h="2.5rem"
+                        variant="ghost"
+                        color="grey"
+                        mr="1rem"
+                    />
                 </InputRightElement>
             </Flex>
         </FormControl>
