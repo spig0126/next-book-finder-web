@@ -11,7 +11,7 @@ export default function Home() {
                 mx="auto"
                 my="20rem"
                 w={{ base: "100vw", lg: "90vw" }}
-                h="95rem"
+                h="90rem"
                 bgColor="blue"
                 zIndex="-1"
                 position="absolute"
@@ -20,7 +20,7 @@ export default function Home() {
             ></Flex>
             <Flex
                 mx="auto"
-                my="25rem"
+                my="20rem"
                 w={{ base: "100vw", lg: "90vw" }}
                 h="50rem"
                 bgColor="yellow"
