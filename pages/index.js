@@ -1,4 +1,4 @@
-import { Flex} from "@chakra-ui/layout";
+import { Flex } from "@chakra-ui/layout";
 
 import BestSellersList from "../src/components/bestSellers/BestSellersList";
 import MainSection from "../src/mainPageSections/MainSection";
