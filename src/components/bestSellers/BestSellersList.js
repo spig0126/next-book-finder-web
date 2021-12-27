@@ -42,11 +42,11 @@ export default function BestSellersList({ genre, hlColor, query, bookData}) {
                         variant="ghost"
                         _hover={{bgColor:"yellow", color:"blue"}}
                     />
-                    <BestSellerBookCard book={bookData[count]} />
-                    <BestSellerBookCard book={bookData[count + 1]} />
-                    <BestSellerBookCard book={bookData[count + 2]} />
-                    <BestSellerBookCard book={bookData[count + 3]} />
-                    <BestSellerBookCard book={bookData[count + 4]} />
+                    <BestSellerBookCard book={Test[count]} />
+                    <BestSellerBookCard book={Test[count + 1]} />
+                    <BestSellerBookCard book={Test[count + 2]} />
+                    <BestSellerBookCard book={Test[count + 3]} />
+                    <BestSellerBookCard book={Test[count + 4]} />
                     <IconButton
                         icon={<BsChevronCompactRight size="md" />}
                         onClick={nextBook}
