@@ -1,11 +1,22 @@
-import { Flex, Image, Grid, Button, Heading, Box } from "@chakra-ui/react";
+import styled from "styled-components";
+import { Wrap } from "@chakra-ui/react";
 
 import { useRouter } from "next/router";
 
 export default function bookDescription() {
     const router = useRouter();
-    const { title, thumbnail, buyLink, description } = router.query;
-
+    const {
+        title,
+        thumbnail,
+        buyLink,
+        description,
+        authors,
+        ratings,
+        ratingsCount,
+    } = router.query;
+    console.log(authors);
+    console.log(ratings);
+    console.log(ratingsCount);
     return (
         <Grid templateColumns="2fr 3fr" w="100vw" h="100vh" justifyItems="flex-end" alignItems="center">
             <Flex bgColor="beige" w="50%" minW="50%" h="40%" minH="40%" alignItems="center" mr="10%">

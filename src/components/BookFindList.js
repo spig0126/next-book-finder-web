@@ -4,14 +4,12 @@ import { Grid, Text, Flex, useBreakpointValue } from "@chakra-ui/react";
 import { useResultContext } from "../context/context";
 export default function BookFindList() {
     const { bookData } = useResultContext();
-    const breakpoint = useBreakpointValue({ base: 2, lg:3, xl:4 });
 
     const books =
         bookData.items &&
         bookData.items.map((book, index) => (
             <BookCard key={book.id} index={index} book={book} />
         ));
-    
     return (
         <Flex
             flexDir="column"

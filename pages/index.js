@@ -1,12 +1,10 @@
 import { Flex } from "@chakra-ui/layout";
 
 import BestSellersList from "../src/components/bestSellers/BestSellersList";
-import MainSection from "../src/mainPageSections/MainSection";
 
 export default function Home() {
     return (
-        <Flex w="100%" flexDir="column">
-            <MainSection />
+        <Flex m="0" p="0" flexDir="column">
             <Flex
                 mx="auto"
                 my="20rem"
