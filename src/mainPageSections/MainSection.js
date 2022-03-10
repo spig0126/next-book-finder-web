@@ -1,4 +1,4 @@
-import { Flex, Heading, Spacer } from "@chakra-ui/react"
+import { Flex, Heading, Spacer } from "@chakra-ui/react";
 
 import SearchForm from "../components/SearchForm";
 
@@ -10,25 +10,31 @@ export default function MainSection() {
                 fontSize="8xl"
                 textAlign="left"
                 minW="35rem"
-                h="20rem" 
+                h="20rem"
                 m="7rem 2rem 2rem 1rem"
             >
-                SEARCH, <br />DISCOVER, <br />EXPLORE
+                SEARCH, <br />
+                DISCOVER, <br />
+                EXPLORE
             </Heading>
             <Flex
-                w="90%"
+                w="100%"
                 h="20rem"
                 m="7rem 0 10rem 0"
                 flexDir="column"
                 border="solid 1rem"
                 borderColor="yellow"
                 borderRightWidth="0"
-                alignItems="center"
+                align="center"
+                justify="center"
             >
-                <Spacer />
-                <Heading fontSize="6xl" color="blue">Ready for another book?</Heading>
-                <SearchForm width="45%" margin="1rem 0 0" />
-                <Spacer />
+                <Heading fontSize="6xl" color="blue">
+                    Ready for another book?
+                </Heading>
+                <SearchForm
+                    width={{ base: "45%", md: "50%" }}
+                    margin="2rem 0 0"
+                />
             </Flex>
         </Flex>
     );

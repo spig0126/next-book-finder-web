@@ -4,43 +4,43 @@ import { Square, Flex, Image, Text, Heading } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 function BookCard({ book }) {
     const router = useRouter();
-    const toggleColor = false;
+    console.log(book);
 
     return (
-        <Button
-            h="14rem"
+        <Flex
+            flexDir="column"
+            alignItems="center"
+            h="100%"
+            w="100%"
             p="0"
             mb="4rem"
-
             onClick={() => {
                 router.push({
                     pathname: `/bookDescriptions/${book.id}`,
                     query: {
                         title: book.volumeInfo.title,
-                        thumbnail:
-                            (book.volumeInfo &&
-                                book.volumeInfo.imageLinks &&
-                                book.volumeInfo.imageLinks.thumbnail) ||
-                            `https://storage.googleapis.com/du-prd/books/images/9780385546027.jpg`,
-                        buyLink: book && book.saleInfo && book.saleInfo.buyLink,
-                        description:
-                            book.volumeInfo && book.volumeInfo.description,
-                        authors: book.volumeInfo && book.volumeInfo.authors,
-                        ratings:
-                            book.volumeInfo && book.volumeInfo.averageRating,
-                        ratingsCount:
-                            book.volumeInfo && book.volumeInfo.ratingsCount,
+                        thumbnail: book.volumeInfo.imageLinks.thumbnail,
+                        buyLink: book.saleInfo.buyLink,
+                        description: book.volumeInfo.description,
+                        authors: book.volumeInfo.authors,
+                        publisher: book.volumeInfo.publisher,
                     },
                 });
             }}
         >
-            <Flex bgColor="beige" w="100%" minW="100%" h="70%" minH="70%" alignItems="center">
+            <Flex
+                bgColor="beige"
+                w="100%"
+                minW="100%"
+                h="70%"
+                minH="70%"
+                alignItems="center"
+            >
                 <Image
                     src={
-                        (book.volumeInfo &&
-                            book.volumeInfo.imageLinks &&
-                            book.volumeInfo.imageLinks.thumbnail) ||
-                        `https://storage.googleapis.com/du-prd/books/images/9780385546027.jpg`
+                        book.volumeInfo &&
+                        book.volumeInfo.imageLinks &&
+                        book.volumeInfo.imageLinks.thumbnail
                     }
                     h="80%"
                     mihH="80%"
@@ -51,21 +51,28 @@ function BookCard({ book }) {
                     boxShadow="base"
                 />
             </Flex>
-        </Button>
+            <Heading fontSize="xl" mt="1rem">
+                {book.volumeInfo && book.volumeInfo.title}
+            </Heading>
+            <Flex
+                flexDir="column"
+                color="white"
+                _hover={{ color: "blue", transitionDuration: "0.3s" }}
+                w="100%"
+                alignItems="left"
+                pt="1rem"
+            >
+                <Text className="authors">
+                    {book.volumeInfo && "by " + book.volumeInfo.authors}
+                </Text>
+                <Text className="publish">
+                    {book.volumeInfo && book.volumeInfo.publisher}
+                </Text>
+                <Text className="publish">
+                    {book.volumeInfo && book.volumeInfo.publishedDate}
+                </Text>
+            </Flex>
+        </Flex>
     );
 }
 export default BookCard;
-const Title = styled.div`
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-    word-wrap: break-word;
-`;
-const Authors = styled.div`
-    font-size: medium;
-    color: grey;
-    margin-bottom: 2rem;
-`;
-const Publish = styled.div`
-    margin-bottom: 5px;
-`;

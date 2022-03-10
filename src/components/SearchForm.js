@@ -12,6 +12,7 @@ import {
 import { FaSearch as SearchIcon } from "react-icons/fa";
 import { useRouter } from "next/dist/client/router";
 import { useResultContext } from "../context/context";
+import { withTheme } from "styled-components";
 
 export default function SearchForm({ width, margin }) {
     const [searchKeyword, setSearchKeyword] = useState("");
@@ -32,15 +33,16 @@ export default function SearchForm({ width, margin }) {
     const handleKeyPress = (e) => {
         if (e.key === "Enter") search(e);
     };
-    const showToast = () => toast({
-        title: "Input Error",
-        description: "입력된 검색어가 없습니다. 다시 입력해주십시오.",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        variant: "solid",
-        position: "top"
-    });
+    const showToast = () =>
+        toast({
+            title: "Input Error",
+            description: "입력된 검색어가 없습니다. 다시 입력해주십시오.",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+            variant: "solid",
+            position: "top",
+        });
 
     const search = (e) => {
         e.preventDefault();
@@ -61,7 +63,7 @@ export default function SearchForm({ width, margin }) {
     };
     setInitialQuery(searchKeyword);
     return (
-        <FormControl onSubmit={search} w={{ base: "70%", md: "50%" }} mx="auto">
+        <FormControl onSubmit={search} w={width} margin={margin}>
             <Flex>
                 <Select
                     name="searchRange"
@@ -71,6 +73,7 @@ export default function SearchForm({ width, margin }) {
                     variant="unstyled"
                     w="6rem"
                     focusBorderColor="none"
+                    color="black"
                 >
                     <option value="all" selected>
                         전체

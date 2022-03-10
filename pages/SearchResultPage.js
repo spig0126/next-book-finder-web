@@ -8,7 +8,7 @@ export default function SearchResultPage() {
         <Flex flexDir="column" w="100%">
             <Flex>
                 <Spacer />
-                <SearchForm width="30vw" margin="3rem 5rem" />
+                <SearchForm width="20vw" margin="3rem 5rem" />
             </Flex>
             <BookFindList />
         </Flex>
