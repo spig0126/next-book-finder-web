@@ -1,12 +1,28 @@
-import styled from "styled-components";
-import { Grid, Flex, Image, Heading, Box, Button } from "@chakra-ui/react";
+import {
+    Grid,
+    Flex,
+    Image,
+    Heading,
+    Button,
+    Text,
+    Divider,
+} from "@chakra-ui/react";
 
 import { useRouter } from "next/router";
+import { useRecoilValue } from "recoil";
+import { bookDetailState } from "../../src/states";
 
 export default function bookDescription() {
     const router = useRouter();
-    const { title, thumbnail, buyLink, description } = router.query;
-
+    const bookDetail = useRecoilValue(bookDetailState);
+    const imageLink = bookDetail.volumeInfo.imageLinks.thumbnail
+        ? "https" +
+          bookDetail.volumeInfo.imageLinks.thumbnail.slice(
+              4,
+              bookDetail.volumeInfo.imageLinks.thumbnail.indexOf("&")
+          ) +
+          "&printsec=frontcover&img=1&zoom=3&source=gbs_api"
+        : bookDetail.volumeInfo.imageLinks.smallThumbnail;
     return (
         <Grid
             templateColumns="2fr 3fr"
@@ -15,39 +31,66 @@ export default function bookDescription() {
             justifyItems="flex-end"
             alignItems="center"
         >
-            <Flex
-                bgColor="beige"
-                w="50%"
-                minW="50%"
-                h="40%"
-                minH="40%"
-                alignItems="center"
-                mr="10%"
-            >
+            <Flex bgColor="beige" w="100%" h="100%" alignItems="center">
                 <Image
-                    src={thumbnail}
-                    h="80%"
-                    mihH="80%"
-                    w="50"
-                    minW="50%"
-                    mx="auto"
+                    src={imageLink}
                     objectFit="cover"
                     boxShadow="base"
+                    mx="auto"
+                    w="70%"
                 />
             </Flex>
-            <Flex justifySelf="flex-start" flexDir="column" w="80%">
-                <Heading textAlign="left" fontSize="7xl" color="blue">
-                    {title}
+
+            <Flex
+                justifySelf="flex-start"
+                color="blue"
+                flexDir="column"
+                w="80%"
+                ml="10%"
+            >
+                <Heading textAlign="left" fontSize="6xl" color="blue">
+                    {bookDetail.volumeInfo.title}
                 </Heading>
-                <Box w="40%" h="2px" bgColor="yellow" my="5%" />
-                <Flex h="30vh" overflowY="scroll">
-                    {description}
+                <Text textAlign="left" as="i" fontSize="2xl">
+                    {bookDetail.volumeInfo.subtitle}
+                </Text>
+                <Divider bgColor="yellow" my="1rem" />
+                <Flex color="darkYellow">
+                    <Text>
+                        {bookDetail.volumeInfo.categories &&
+                            bookDetail.volumeInfo.categories.map(
+                                (category) => "#" + category
+                            )}
+                    </Text>
+                    {/* <Text>
+                        {bookDetail.volumeInfo.authors &&
+                            bookDetail.volumeInfo.authors.map(
+                                (category, index) =>
+                                    index !=
+                                    bookDetail.volumeInfo.authors.length - 1
+                                        ? category + ","
+                                        : category
+                            )}
+                    </Text> */}
+                </Flex>
+
+                <Flex
+                    h="30vh"
+                    overflowY="scroll"
+                    color="black"
+                    my="3rem"
+                    fontSize="1.5rem"
+                >
+                    {bookDetail.volumeInfo.description}
                 </Flex>
                 <Button
-                    mt="3rem"
+                    px="4rem"
                     w="5rem"
+                    color="blue"
+                    bgColor="yellow"
+                    alignSelf="end"
                     onClick={() => {
-                        router.push(buyLink);
+                        router.push(bookDetail.saleInfo.buyLink);
                     }}
                 >
                     Buy

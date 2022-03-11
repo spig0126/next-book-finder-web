@@ -36,6 +36,7 @@ function BestSellers() {
                 alignItems="center"
                 bgColor="yellow"
                 hoverColor="blue"
+                h="80rem"
                 py="5rem"
                 mb="5rem"
             >

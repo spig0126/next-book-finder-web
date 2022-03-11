@@ -12,6 +12,7 @@ const theme = extendTheme({
         blue: "#002d4f",
         white: "#ffffff",
         yellow: "#fcdc35",
+        darkYellow: "#ffa600",
     },
     fonts: {
         heading: "Raleway",

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useAxiosGet from "../library/useSearchBookData";
+import useSearchBookData from "../library/useSearchBookData";
 import {
     Input,
     Select,
@@ -12,7 +12,6 @@ import {
 import { FaSearch as SearchIcon } from "react-icons/fa";
 import { useRouter } from "next/dist/client/router";
 import { useResultContext } from "../context/context";
-import { withTheme } from "styled-components";
 
 export default function SearchForm({ width, margin }) {
     const [searchKeyword, setSearchKeyword] = useState("");
@@ -22,7 +21,8 @@ export default function SearchForm({ width, margin }) {
 
     const { initialQuery, setInitialQuery } = useResultContext();
 
-    const { isLoading, isError, setSearchQuery } = useAxiosGet(initialQuery);
+    const { isLoading, isError, setSearchQuery } =
+        useSearchBookData(initialQuery);
 
     const handleChangeInput = (e) => {
         setSearchKeyword(e.target.value);

@@ -18,10 +18,20 @@ export default function BookFindList() {
             px={{ base: "5%", md: "10rem" }}
             alignItems="center"
             color="blue"
+            width="90%"
+            mx="auto"
         >
-            <Text ontSize="3xl" mt="2rem" h="1.5rem">Your</Text>
-            <Text fontSize="5xl" fontWeight="bold" mb="2rem" fontWeight="bold"> SEARCH RESULTS ({bookData.totalItems})</Text>
-            <Grid templateColumns={`repeat(${breakpoint}, 1fr)`} gap="3rem">
+            <Text ontSize="3xl" mt="2rem" h="1.5rem">
+                Your
+            </Text>
+            <Text fontSize="5xl" fontWeight="bold" mb="2rem">
+                SEARCH RESULTS ({bookData.totalItems})
+            </Text>
+            <Grid
+                width="100%"
+                templateColumns={`repeat(${breakpoint}, 1fr)`}
+                gap="3rem"
+            >
                 {books}
             </Grid>
         </Flex>
