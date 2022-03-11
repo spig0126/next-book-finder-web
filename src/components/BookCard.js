@@ -1,10 +1,11 @@
-import styled from "styled-components";
-import { Square, Flex, Image, Text, Heading } from "@chakra-ui/react";
+import { Flex, Image, Text, Heading } from "@chakra-ui/react";
 
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { bookDetailState } from "../states";
 function BookCard({ book }) {
     const router = useRouter();
-    console.log(book);
+    const [bookDetail, setBookDetail] = useRecoilState(bookDetailState);
 
     return (
         <Flex
@@ -15,16 +16,9 @@ function BookCard({ book }) {
             p="0"
             mb="4rem"
             onClick={() => {
+                setBookDetail(book);
                 router.push({
                     pathname: `/bookDescriptions/${book.id}`,
-                    query: {
-                        title: book.volumeInfo.title,
-                        thumbnail: book.volumeInfo.imageLinks.thumbnail,
-                        buyLink: book.saleInfo.buyLink,
-                        description: book.volumeInfo.description,
-                        authors: book.volumeInfo.authors,
-                        publisher: book.volumeInfo.publisher,
-                    },
                 });
             }}
         >
