@@ -29,7 +29,7 @@ export default function MainSection() {
                 justify="center"
             >
                 <Heading fontSize="6xl" color="blue">
-                    Ready for another book?
+                    Ready for your next book?
                 </Heading>
                 <SearchForm
                     width={{ base: "45%", md: "50%" }}
