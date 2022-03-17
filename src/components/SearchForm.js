@@ -12,11 +12,7 @@ import {
 import { FaSearch as SearchIcon } from "react-icons/fa";
 import { useRouter } from "next/dist/client/router";
 import { useResultContext } from "../context/context";
-import {
-    searchKeywordState,
-    searchQueryState,
-    pageState,
-} from "../states";
+import { searchKeywordState, searchQueryState, pageState } from "../states";
 import { useRecoilState } from "recoil";
 
 export default function SearchForm({ width, margin }) {
@@ -29,7 +25,6 @@ export default function SearchForm({ width, margin }) {
     const router = useRouter();
 
     const { initialQuery, setInitialQuery } = useResultContext();
-
 
     const handleChangeInput = (e) => {
         setSearchKeyword(e.target.value);
@@ -79,19 +74,19 @@ export default function SearchForm({ width, margin }) {
                     required={true}
                     h="2.5rem"
                     variant="unstyled"
-                    w="6rem"
+                    w="7rem"
                     focusBorderColor="none"
                     color="black"
                 >
                     <option value="all" selected>
-                        전체
+                        all
                     </option>
-                    <option value="title">제목</option>
-                    <option value="author">저자</option>
-                    <option value="publisher">출판사</option>
+                    <option value="title">title</option>
+                    <option value="author">author</option>
+                    <option value="publisher">publisher</option>
                 </Select>
                 <Input
-                    placeholder="작가 또는 제목을 입력하세요"
+                    placeholder="search keywords, titles, authors, and publishers"
                     value={searchKeyword}
                     onChange={handleChangeInput}
                     onKeyPress={handleKeyPress}
@@ -100,7 +95,8 @@ export default function SearchForm({ width, margin }) {
                     color="black"
                     bgColor="white"
                     borderColor="blue"
-                    focusBorderColor="yellow"
+                    _hover={{ borderColor: "darkYellow" }}
+                    _focus={{ borderColor: "yellow" }}
                     borderRadius="1rem"
                 ></Input>
                 <InputRightElement>
