@@ -13,7 +13,7 @@ function BestSellers() {
                 alignItems="center"
                 bgColor="blue"
                 py="5rem"
-                mb="40rem"
+                mb="35rem"
             >
                 <BestSellersList
                     genre="Fiction"
@@ -40,7 +40,7 @@ function BestSellers() {
                 py="5rem"
                 mb="5rem"
             >
-                <Flex flexDir="column" position="relative" top="-30rem">
+                <Flex flexDir="column" position="relative" top="-25rem">
                     <BestSellersList
                         genre="Young Adult's"
                         hlColor="blue"
