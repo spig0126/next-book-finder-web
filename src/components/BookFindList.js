@@ -1,9 +1,17 @@
 import BookCard from "./BookCard";
 
-import { Grid, Text, Flex, useBreakpointValue } from "@chakra-ui/react";
-import { useResultContext } from "../context/context";
-export default function BookFindList() {
-    const { bookData } = useResultContext();
+import {
+    Grid,
+    Text,
+    Flex,
+    useBreakpointValue,
+    Spinner,
+} from "@chakra-ui/react";
+import { useRecoilValue } from "recoil";
+import { bookDataState } from "../states";
+import Paginator from "./Paginator";
+export default function BookFindList({ isLoading }) {
+    const bookData = useRecoilValue(bookDataState);
     const breakpoint = useBreakpointValue({ base: 2, lg: 3, xl: 4 });
 
     const books =
@@ -21,19 +29,27 @@ export default function BookFindList() {
             width="90%"
             mx="auto"
         >
-            <Text ontSize="3xl" mt="2rem" h="1.5rem">
-                Your
-            </Text>
-            <Text fontSize="5xl" fontWeight="bold" mb="2rem">
-                SEARCH RESULTS ({bookData.totalItems})
-            </Text>
-            <Grid
-                width="100%"
-                templateColumns={`repeat(${breakpoint}, 1fr)`}
-                gap="3rem"
-            >
-                {books}
-            </Grid>
+            {isLoading ? (
+                <Spinner />
+            ) : (
+                <>
+                    <Text ontSize="3xl" mt="2rem" h="1.5rem">
+                        Your
+                    </Text>
+                    <Text fontSize="5xl" fontWeight="bold" mb="2rem">
+                        SEARCH RESULTS ({bookData.totalItems})
+                    </Text>
+                    <Grid
+                        width="100%"
+                        templateColumns={`repeat(${breakpoint}, 1fr)`}
+                        gap="3rem"
+                        mb="3rem"
+                    >
+                        {books}
+                    </Grid>
+                    <Paginator total={bookData.totalItems} />
+                </>
+            )}
         </Flex>
     );
 }

@@ -12,17 +12,24 @@ import {
 import { FaSearch as SearchIcon } from "react-icons/fa";
 import { useRouter } from "next/dist/client/router";
 import { useResultContext } from "../context/context";
+import {
+    searchKeywordState,
+    searchQueryState,
+    pageState,
+} from "../states";
+import { useRecoilState } from "recoil";
 
 export default function SearchForm({ width, margin }) {
-    const [searchKeyword, setSearchKeyword] = useState("");
+    const [searchKeyword, setSearchKeyword] =
+        useRecoilState(searchKeywordState);
+    const [searchQuery, setSearchQuery] = useRecoilState(searchQueryState);
+    const [pageIndex, setPageIndex] = useRecoilState(pageState);
     const [searchRange, setSearchRange] = useState("all");
     const toast = useToast();
     const router = useRouter();
 
     const { initialQuery, setInitialQuery } = useResultContext();
 
-    const { isLoading, isError, setSearchQuery } =
-        useSearchBookData(initialQuery);
 
     const handleChangeInput = (e) => {
         setSearchKeyword(e.target.value);
@@ -49,7 +56,7 @@ export default function SearchForm({ width, margin }) {
         if (searchKeyword === "") showToast();
         else {
             if (searchRange === "all") {
-                setSearchQuery(`${searchKeyword}.replace(" ", "+")}`);
+                setSearchQuery(`${searchKeyword}.replace(" ", "+")`);
             } else if (searchRange === "title") {
                 setSearchQuery(`intitle:${searchKeyword}`);
             } else if (searchRange === "author") {
@@ -59,6 +66,7 @@ export default function SearchForm({ width, margin }) {
             }
             router.push("./SearchResultPage");
         }
+        setPageIndex(0);
         router.push("./SearchResultPage");
     };
     setInitialQuery(searchKeyword);
